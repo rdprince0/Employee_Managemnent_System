@@ -1,0 +1,38 @@
+package menu;
+
+import java.util.Scanner;
+
+import static java.lang.System.exit;
+
+public class Menu {
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Select an option");
+        System.out.println("1. Add Employee");
+        System.out.println("2. View Employee Details");
+        System.out.println("3. Update Employee");
+        System.out.println("4. Detele Employee");
+        System.out.println("5. Exit");
+        System.out.print("Enter your choice : ");
+        int option=sc.nextInt();
+        switch(option){
+            case 1:
+                System.out.println("Add Employee");
+//                addEmployee();
+                break;
+            case 2:
+                System.out.println("View Employee");
+                break;
+            case 3:
+                System.out.println("Update Employee");
+                break;
+            case 4:
+                System.out.println("Delete Employee");
+                break;
+            case 5:
+                exit(0);
+            default:
+                System.out.println("Invalid option");
+        }
+    }
+}
