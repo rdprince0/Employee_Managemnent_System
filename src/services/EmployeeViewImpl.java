@@ -19,5 +19,6 @@ public class EmployeeViewImpl implements EmployeeView {
             case 3 -> vEmp.viewJob();
             default -> System.out.println("Invalid choice");
         }
+        sc.close();
     }
 }

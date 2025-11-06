@@ -119,4 +119,83 @@ public class EmployeeDAO {
             System.out.println("Unable to connect to database");
         }
     }
+
+    public void updateSalary(Integer id, Integer salary)
+    {
+        String sql = "update ems.emp set sal = ? where empId = ? ";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setInt(1,salary);
+            presmt.setInt(2,id);
+            Integer rowEffected = presmt.executeUpdate();
+            if(rowEffected > 0)
+                System.out.println("Salary Updated");
+            else
+                System.out.println("Salary Not Updated");
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Unable to connect to database");
+        }
+    }
+    public void updateCm(Integer id, Integer commission)
+    {
+        String sql = "update ems.emp set comm = ? where empId = ? ";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setInt(1,commission);
+            presmt.setInt(2,id);
+            Integer rowEffected = presmt.executeUpdate();
+            if(rowEffected > 0)
+                System.out.println("Commission  Updated");
+            else
+                System.out.println("Commission Not Updated");
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Unable to connect to database");
+        }
+    }
+    public void updateJob(Integer id, String job)
+    {
+        String sql = "update ems.emp set job = ? where empId = ? ";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setString(1,job);
+            presmt.setInt(2,id);
+            Integer rowEffected = presmt.executeUpdate();
+            if(rowEffected > 0)
+                System.out.println("Job Updated");
+            else
+                System.out.println("Job Not Updated");
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Unable to connect to database");
+        }
+    }
+
+
+    public void deleteEmployee(Integer id)
+    {
+        String sql = "delete from ems.emp where empId = ?; ";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setInt(1,id);
+            Integer rowEffected = presmt.executeUpdate();
+            if(rowEffected > 0)
+                System.out.println("Employee Deleted");
+            else
+                System.out.println("Employee Not Deleted");
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Unable to connect to database");
+        }
+    }
+
 }

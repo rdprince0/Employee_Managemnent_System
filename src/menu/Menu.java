@@ -1,9 +1,7 @@
 package menu;
 
 import data.EmployeeDAO;
-import services.EmployeeServiceImpl;
-import services.EmployeeView;
-import services.EmployeeViewImpl;
+import services.*;
 
 import java.util.Scanner;
 
@@ -32,10 +30,12 @@ public class Menu {
                 empView.viewEmployee();
                 break;
             case 3:
-                System.out.println("Update Employee");
+                EmployeeUpdateImp empUpdate = new EmployeeUpdateImp();
+                empUpdate.empUpdate();
                 break;
             case 4:
-                System.out.println("Delete Employee");
+                EmployeeDeleteImp  empDelete = new EmployeeDeleteImp();
+                empDelete.employeeDelete();
                 break;
             case 5:
                 exit(0);
