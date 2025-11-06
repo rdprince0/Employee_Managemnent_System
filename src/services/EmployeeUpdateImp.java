@@ -20,5 +20,6 @@ public class EmployeeUpdateImp implements EmployeeUdate {
             case 3 -> ep.updateEmpJob();
             default -> System.out.println("Invalid choice");
         }
+        sc.close();
     }
 }

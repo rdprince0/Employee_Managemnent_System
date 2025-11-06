@@ -33,14 +33,16 @@ public class EmployeeDAO {
 
     public void viewByName(String name)
     {
-        String sql = "select * from ems.emp where empid = ?";
+        String sql = "select * from ems.emp where ename = ?";
         try{
             Connection connection = DriverManager.getConnection(dbUrl,username,password);
             PreparedStatement presmt = connection.prepareStatement(sql);
             presmt.setString(1,name);
             ResultSet resultSet = presmt.executeQuery();
+            boolean recordFound = false;
             while(resultSet.next())
             {
+                recordFound = true;
                 int id = resultSet.getInt("empid");
                 String empName = resultSet.getString("ename");
                 String job = resultSet.getString("job");
@@ -51,6 +53,10 @@ public class EmployeeDAO {
                 int deptno = resultSet.getInt("deptno");
                 System.out.println("EmpId: "+id+" | Name: "+empName+" | Job: "+job+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
 
+            }
+            if(!recordFound)
+            {
+                System.out.println("No records found.....");
             }
 
         }
@@ -69,8 +75,10 @@ public class EmployeeDAO {
             PreparedStatement presmt = connection.prepareStatement(sql);
             presmt.setInt(1,id);
             ResultSet resultSet = presmt.executeQuery();
+            boolean recordFound = false;
             while(resultSet.next())
             {
+                recordFound = true;
 
                 Integer eid = resultSet.getInt("empid");
                 String empName = resultSet.getString("ename");
@@ -83,6 +91,10 @@ public class EmployeeDAO {
                 System.out.println("EmpId: "+id+" | Name: "+empName+" | Job: "+job+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
 
             }
+            if(!recordFound)
+                {
+                System.out.println("No records found.....");
+                }
         }
         catch(SQLException e)
         {
@@ -98,9 +110,10 @@ public class EmployeeDAO {
             PreparedStatement presmt = connection.prepareStatement(sql);
             presmt.setString(1,job);
             ResultSet resultSet = presmt.executeQuery();
+            boolean recordFound = false;
             while(resultSet.next())
             {
-
+                 recordFound = true;
                 Integer eid = resultSet.getInt("empid");
                 String empName = resultSet.getString("ename");
                 String empjob = resultSet.getString("job");
@@ -111,6 +124,10 @@ public class EmployeeDAO {
                 Integer deptno = resultSet.getInt("deptno");
                 System.out.println("EmpId: "+eid+" | Name: "+empName+" | Job: "+empjob+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
 
+            }
+            if(!recordFound)
+            {
+                System.out.println("No records found..........");
             }
         }
         catch(SQLException e)
@@ -130,9 +147,9 @@ public class EmployeeDAO {
             presmt.setInt(2,id);
             Integer rowEffected = presmt.executeUpdate();
             if(rowEffected > 0)
-                System.out.println("Salary Updated");
+                System.out.println("Salary Updated.......");
             else
-                System.out.println("Salary Not Updated");
+                System.out.println("Employee Not found.....");
         }
         catch(SQLException e)
         {
@@ -149,9 +166,9 @@ public class EmployeeDAO {
             presmt.setInt(2,id);
             Integer rowEffected = presmt.executeUpdate();
             if(rowEffected > 0)
-                System.out.println("Commission  Updated");
+                System.out.println("Commission  Updated.......");
             else
-                System.out.println("Commission Not Updated");
+                System.out.println("Employee Not found...");
         }
         catch(SQLException e)
         {
@@ -168,9 +185,9 @@ public class EmployeeDAO {
             presmt.setInt(2,id);
             Integer rowEffected = presmt.executeUpdate();
             if(rowEffected > 0)
-                System.out.println("Job Updated");
+                System.out.println("Job Updated......");
             else
-                System.out.println("Job Not Updated");
+                System.out.println("Employee Not found......");
         }
         catch(SQLException e)
         {
@@ -190,7 +207,7 @@ public class EmployeeDAO {
             if(rowEffected > 0)
                 System.out.println("Employee Deleted");
             else
-                System.out.println("Employee Not Deleted");
+                System.out.println("Employee Not  found.....");
         }
         catch(SQLException e)
         {

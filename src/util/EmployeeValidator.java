@@ -66,7 +66,7 @@ public class EmployeeValidator {
     }
     public static void commValidate(Integer commission)
     {
-        if(commission !=null && commission <= 0 )
+        if(commission !=null && commission <= 0 && commission != 0 )
         {
             System.err.println("Employee Commission should not be negative");
             throw new IllegalArgumentException(" commission should not be negative");

@@ -18,6 +18,7 @@ public class ViewEmployee {
         empDTo.setName(name);
         System.out.println("Fetching the data....");
         empDAo.viewByName(empDTo.getName());
+        sc.close();
     }
     public  void viewId()
     {
@@ -27,6 +28,7 @@ public class ViewEmployee {
         empDTo.setEmployeeId(id);
         System.out.println("Fetching the data....");
         empDAo.viewById(empDTo.getEmployeeId());
+        sc.close();
 
     }
     public void viewJob()
@@ -37,6 +39,7 @@ public class ViewEmployee {
         empDTo.setJob(job);
         System.out.println("Fetching the data....");
         empDAo.viewByJob(empDTo.getJob());
+        sc.close();
     }
 }
 

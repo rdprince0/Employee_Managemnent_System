@@ -14,7 +14,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 //        System.out.println("Enter Employee ID");
 //        Integer employeeId = sc.nextInt();
         System.out.println("Enter employee name");
-        String name = sc.next();
+        String name = sc.nextLine();
         System.out.println("Enter employee job");
         String job = sc.next();
         System.out.println("Enter employee manager");
@@ -44,5 +44,6 @@ public class EmployeeServiceImpl implements EmployeeService{
         EmployeeDAO empDAo = new EmployeeDAO();
         empDAo.save(empDto);
         System.out.println("Employee data saved!!");
+        sc.close();
     }
 }

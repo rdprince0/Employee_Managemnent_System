@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 public class EmployeeDeleteImp implements EmployeeDelete {
 
+    static final Scanner sc = new Scanner(System.in);
     @Override
     public void employeeDelete() {
-        Scanner sc = new Scanner(System.in);
+
         System.out.print("Enter employee Id you want to delete : ");
         Integer id = sc.nextInt();
         EmployeeValidator.idValidate(id);
@@ -18,6 +19,7 @@ public class EmployeeDeleteImp implements EmployeeDelete {
         empDTo.setEmployeeId(id);
         EmployeeDAO empDAO = new EmployeeDAO();
         empDAO.deleteEmployee(id);
+        sc.close();
 
     }
 }

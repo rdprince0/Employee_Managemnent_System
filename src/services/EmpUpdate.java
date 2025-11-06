@@ -21,6 +21,7 @@ public class EmpUpdate {
         empDTo.setEmployeeId(id);
         empDTo.setSalary(newSalary);
         empDAO.updateSalary(id, newSalary);
+        sc.close();
     }
     public void updateComm()
     {
@@ -33,6 +34,7 @@ public class EmpUpdate {
         empDTo.setEmployeeId(id);
         empDTo.setCommission(newComm);
         empDAO.updateCm(id, newComm);
+        sc.close();
     }
     public void updateEmpJob()
     {
@@ -45,5 +47,7 @@ public class EmpUpdate {
         empDTo.setEmployeeId(id);
         empDTo.setJob(newJob);
         empDAO.updateJob(id, newJob);
+        sc.close();
     }
+
 }
