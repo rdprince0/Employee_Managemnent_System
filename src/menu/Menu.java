@@ -1,11 +1,17 @@
 package menu;
 
+import data.EmployeeDAO;
+import services.EmployeeServiceImpl;
+import services.EmployeeView;
+import services.EmployeeViewImpl;
+
 import java.util.Scanner;
 
 import static java.lang.System.exit;
 
 public class Menu {
-    public static void main(String args[]){
+    public static void main(String[] args
+    ){
         Scanner sc=new Scanner(System.in);
         System.out.println("Select an option");
         System.out.println("1. Add Employee");
@@ -17,11 +23,13 @@ public class Menu {
         int option=sc.nextInt();
         switch(option){
             case 1:
-                System.out.println("Add Employee");
-//                addEmployee();
+                System.out.println("Enter Employee Data");
+                EmployeeServiceImpl empDAO = new EmployeeServiceImpl();
+                empDAO.addEmployee();
                 break;
             case 2:
-                System.out.println("View Employee");
+                EmployeeViewImpl empView = new EmployeeViewImpl();
+                empView.viewEmployee();
                 break;
             case 3:
                 System.out.println("Update Employee");

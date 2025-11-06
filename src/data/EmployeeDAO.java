@@ -1,26 +1,121 @@
 package data;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class EmployeeDAO {
-    private static final String dbUrl = "jdbc:mysql://localhost/newbd1";
+    private static final String dbUrl = "jdbc:mysql://localhost/ems";
     private static final String username = "root";
     private static final String password = "Root@123";
-    public void save()
+
+
+
+    public void save(EmployeeDTo empDto)
     {
-        String sql = "insert into employee values(?,?,?,?)";
+        String sql = "insert into ems.emp (ename,job,mgr,hiredate,sal,comm,deptno) values(?,?,?,?,?,?,null)";
         try{
             Connection connection = DriverManager.getConnection(dbUrl,username,password);
             PreparedStatement presmt = connection.prepareStatement(sql);
-//            setData
-
-            int roeEffected = presmt.executeUpdate();
+//            presmt.setInt(1,empDto.getEmployeeId());
+            presmt.setString(1,empDto.getName());
+            presmt.setString(2,empDto.getJob());
+            presmt.setInt(3,empDto.getManager());
+            presmt.setString(4,empDto.getHireDate());
+            presmt.setInt(5,empDto.getSalary());
+            presmt.setInt(6,empDto.getCommission());
+//            presmt.setInt(8,empDto.getDeptNo());
+            presmt.executeUpdate();
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("Unable to connect to database");
+        }
+    }
+
+    public void viewByName(String name)
+    {
+        String sql = "select * from ems.emp where empid = ?";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setString(1,name);
+            ResultSet resultSet = presmt.executeQuery();
+            while(resultSet.next())
+            {
+                int id = resultSet.getInt("empid");
+                String empName = resultSet.getString("ename");
+                String job = resultSet.getString("job");
+                int manager = resultSet.getInt("mgr");
+                String hiredate = resultSet.getString("hiredate");
+                int salary = resultSet.getInt("sal");
+                int commission = resultSet.getInt("comm");
+                int deptno = resultSet.getInt("deptno");
+                System.out.println("EmpId: "+id+" | Name: "+empName+" | Job: "+job+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
+
+            }
+
+        }
+        catch(SQLException e)
+        {
+//            e.printStackTrace();
+            System.out.println("Unable to connect to database");
+        }
+    }
+
+    public void viewById(Integer id)
+    {
+        String sql = "select * from ems.emp where empId = ?";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setInt(1,id);
+            ResultSet resultSet = presmt.executeQuery();
+            while(resultSet.next())
+            {
+
+                Integer eid = resultSet.getInt("empid");
+                String empName = resultSet.getString("ename");
+                String job = resultSet.getString("job");
+                Integer manager = resultSet.getInt("mgr");
+                String hiredate = resultSet.getString("hiredate");
+                Integer salary = resultSet.getInt("sal");
+                Integer commission = resultSet.getInt("comm");
+                Integer deptno = resultSet.getInt("deptno");
+                System.out.println("EmpId: "+id+" | Name: "+empName+" | Job: "+job+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
+
+            }
+        }
+        catch(SQLException e)
+        {
+//            e.printStackTrace();
+            System.out.println("Unable to connect to database");
+        }
+    }
+    public void viewByJob(String job)
+    {
+        String sql = "select * from ems.emp where job = ?";
+        try{
+            Connection connection = DriverManager.getConnection(dbUrl,username,password);
+            PreparedStatement presmt = connection.prepareStatement(sql);
+            presmt.setString(1,job);
+            ResultSet resultSet = presmt.executeQuery();
+            while(resultSet.next())
+            {
+
+                Integer eid = resultSet.getInt("empid");
+                String empName = resultSet.getString("ename");
+                String empjob = resultSet.getString("job");
+                Integer manager = resultSet.getInt("mgr");
+                String hiredate = resultSet.getString("hiredate");
+                Integer salary = resultSet.getInt("sal");
+                Integer commission = resultSet.getInt("comm");
+                Integer deptno = resultSet.getInt("deptno");
+                System.out.println("EmpId: "+eid+" | Name: "+empName+" | Job: "+empjob+" | MGR No: "+manager+" | HireDate: "+hiredate+" | Salary: "+salary+" | Commission: "+commission+" | DeptNo: "+deptno);
+
+            }
+        }
+        catch(SQLException e)
+        {
+//            e.printStackTrace();
             System.out.println("Unable to connect to database");
         }
     }
