@@ -205,7 +205,7 @@ public class EmployeeDAO {
             presmt.setInt(1,id);
             Integer rowEffected = presmt.executeUpdate();
             if(rowEffected > 0)
-                System.out.println("Employee Deleted");
+                System.out.println("Employee Deleted.......");
             else
                 System.out.println("Employee Not  found.....");
         }
